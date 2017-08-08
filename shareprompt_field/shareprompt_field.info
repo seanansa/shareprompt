@@ -1,0 +1,4 @@
+name = Shareprompt Field
+description = Creates a shareprompt field
+core = 7.x
+dependencies[] = shareprompt

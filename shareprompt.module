@@ -1,0 +1,73 @@
+<?php
+
+  /**
+ * Implements hook_block_info().
+ */
+function shareprompt_block_info() {
+  $blocks['shareprompt'] = array(
+    'info' => t('Custom Prompt Block'),
+  );
+  return $blocks;
+}
+
+function shareprompt_block_view($delta = '') {
+  $block = array();
+
+  switch ($delta) {
+    case 'shareprompt':
+      $block['subject'] = '';
+      $block['content'] = array(
+        '#markup'   => shareprompt_content(),
+        '#attached' => array(
+          'css' => array(
+            drupal_get_path('module', 'shareprompt') . '/shareprompt.css',
+          ),
+          'js'  => array(
+            drupal_get_path('module', 'shareprompt') . '/shareprompt.js',
+          ),
+        ),
+      );
+      break;
+  }
+  return $block;
+}
+
+function shareprompt_content() {
+  $output = '<form>
+<h2 class="not-front">Join the Conversation!</h2>     
+
+<p><strong>Share your #BizUnited story</strong> by selecting a social network, and simply filling in the blanks to tag your partner businesses</p>
+
+<p class="socialmediaselect">
+<button id="Twitter" class="generate-form1 shareprompt-btn-blue icon-twitter">Share on Twitter</button>
+<button id="Facebook" class="generate-form1 shareprompt-btn-blue icon-facebook">Share on Facebook</button>
+</p>
+
+<p class="hidden1">
+<input type="button" class="show-twitter-prompt shareprompt-btn-blue" id="ts1" value="I\'m a Startup" name="Startup" />
+<input type="button" class="show-twitter-prompt shareprompt-btn-blue" id="ts2" value="I\'m a Small Business" name="Small Business"  />
+<input type="button" class="show-twitter-prompt shareprompt-btn-blue" id="ts3" value="I\'m a Mid-Sized Business" name="Mid-Sized Business" />
+<input type="button" class="show-twitter-prompt shareprompt-btn-blue" id="ts4" value="I\'m a Large Company" name="Large Company" />
+</p> 
+
+<p class="hidden2">
+<input type="button" class="show-facebook-prompt shareprompt-btn-blue" id="ts1" value="I\'m a Startup"  name="Startup" />
+<input type="button" class="show-facebook-prompt shareprompt-btn-blue" id="ts2" value="I\'m a Small Business"  name="Small Business"  />
+<input type="button" class="show-facebook-prompt shareprompt-btn-blue" id="ts3" value="I\'m a Mid-Sized Business" name="Mid-Sized Business"  />
+<input type="button" class="show-facebook-prompt shareprompt-btn-blue" id="ts4" value="I\'m a Large Company" name="Large Company" />
+</p>
+
+<p class=hidden3 id="tprompt">
+<span class="osval"></span> <span style="white-space:nowrap">@<input type="text" id="name1"/></span><span class="add-name2">+</span> <span class="name2"> and <span style="white-space:nowrap">@<input type="text" id="name2"/></span> </span><span class="csval"></span><br />#BizUnited #PassItOn www.uschamber.com/bizunited<br/>
+<input type="button" value="Post to Twitter" class="fill-twitter-prompt shareprompt-btn-blue"/>
+</p>
+
+<p class="hidden4" id="fprompt">
+<span class="osval"></span> <span style="white-space:nowrap">@<input type="text" id="facename1"/></span><span class="add-name2">+</span> <span class="name2"> and <span style="white-space:nowrap">@<input type="text" id="facename2"/></span> </span><span class="csval"></span><br />#BizUnited www.uschamber.com/bizunited<br/>
+<input type="button" value="Post to Facebook!" class="fill-facebook-prompt shareprompt-btn-blue"/>
+</p>
+
+<p class="hidden6">Thanks for adding your voice to #BizUnited!</p>
+</form>';
+  return $output;
+}

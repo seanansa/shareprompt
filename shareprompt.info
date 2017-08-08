@@ -1,0 +1,3 @@
+name = shareprompt
+description = Creates a pop up to post a message to Twitter or Facebook
+core = 7.x
